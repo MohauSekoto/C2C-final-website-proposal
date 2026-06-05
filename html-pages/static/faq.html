@@ -1,0 +1,43 @@
+<script>
+    fetch('../shared/header.html').then(r => r.text()).then(d => document.body.insertAdjacentHTML('afterbegin', d.split('<main')[0] + '<main class="flex-grow">'));
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>FAQ - KasiBuy</title>
+</head>
+<body class="bg-zinc-50 min-h-screen flex flex-col">
+
+<div class="container mx-auto px-4 py-16 max-w-4xl pt-24">
+    <h1 class="text-4xl font-bold mb-8">Frequently Asked Questions</h1>
+    
+    <div class="space-y-6">
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-zinc-200">
+            <h3 class="text-lg font-bold mb-2">How does the escrow system work?</h3>
+            <p class="text-zinc-600">When you buy an item, your money is held securely by KasiBuy. The seller is notified to ship. Once you receive the item and confirm it's exactly as described, we release the money to the seller.</p>
+        </div>
+        
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-zinc-200">
+            <h3 class="text-lg font-bold mb-2">What happens if I never receive my order?</h3>
+            <p class="text-zinc-600">If the seller fails to provide proof of delivery and you don't receive your item within the expected timeframe, you are entitled to a full refund.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-zinc-200">
+            <h3 class="text-lg font-bold mb-2">How do I become a seller?</h3>
+            <p class="text-zinc-600">You can apply to become a seller directly from your user dashboard. Once approved, you can start listing your products immediately.</p>
+        </div>
+        
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-zinc-200">
+            <h3 class="text-lg font-bold mb-2">What payment methods are accepted?</h3>
+            <p class="text-zinc-600">We use PayFast to process payments securely. You can pay via Credit/Debit card, Instant EFT, Masterpass, SnapScan, and Zapper.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    fetch('../shared/footer.html').then(r => r.text()).then(d => document.body.insertAdjacentHTML('beforeend', '</main>' + d.split('</main>')[1]));
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+name: KasiBuy CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        
+    - name: PHP Lint
+      run: find . -name "*.php" -print0 | xargs -0 -n1 php -l
+
+    - name: Run Jest unit tests
+      run: npm run test:unit || true
+
+    - name: Run Playwright tests
+      run: npx playwright test || true

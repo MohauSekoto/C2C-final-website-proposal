@@ -1,0 +1,52 @@
+<!-- PHP includes the header via require in a real app, but for standalone we simulate the UI -->
+<script>
+    fetch('../shared/header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.body.insertAdjacentHTML('afterbegin', data.split('<main')[0] + '<main class="flex-grow">');
+        });
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>About Us - KasiBuy</title>
+</head>
+<body class="bg-zinc-50 min-h-screen flex flex-col">
+
+<div class="container mx-auto px-4 py-16 max-w-4xl pt-24">
+    <h1 class="text-4xl font-bold mb-8">About KasiBuy</h1>
+    
+    <div class="prose prose-lg">
+        <p class="mb-6 text-zinc-600">
+            KasiBuy was founded with a single mission: to empower local sellers from townships (Kasis) and connect them with buyers nationwide in a secure, trust-less environment.
+        </p>
+        
+        <h2 class="text-2xl font-bold mt-12 mb-4">The Trust Problem</h2>
+        <p class="mb-6 text-zinc-600">
+            Many local artisans and traders struggle to reach markets outside their immediate vicinity. Buyers, on the other hand, are often hesitant to purchase from unknown sellers on social media due to the risk of scams.
+        </p>
+        
+        <h2 class="text-2xl font-bold mt-12 mb-4">Our Escrow Solution</h2>
+        <p class="mb-6 text-zinc-600">
+            We solve this by acting as a trusted intermediary. When a buyer makes a purchase, KasiBuy holds the funds securely in escrow. The seller is notified to ship the item, but they only receive the funds once the buyer receives and approves the delivery. If the item never arrives, the buyer is refunded. It's that simple.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-12 mb-4">Empowering Local Economies</h2>
+        <p class="mb-6 text-zinc-600">
+            By providing a professional storefront, secure payments via PayFast, and integrated shipping calculation, we lower the barrier to entry for local entrepreneurs, keeping money circulating within our communities.
+        </p>
+    </div>
+</div>
+
+<script>
+    fetch('../shared/footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.body.insertAdjacentHTML('beforeend', '</main>' + data.split('</main>')[1]);
+        });
+</script>
+</body>
+</html>

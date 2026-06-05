@@ -1,0 +1,12 @@
+/* html-pages/shared/styles.css */
+/* Custom non-Tailwind overrides can go here */
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure empty links don't collapse completely */
+a:empty {
+    display: inline-block;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Receipt - KasiBuy</title>
+    <style>
+        body { font-family: monospace; color: #000; font-size: 12px; line-height: 1.4; margin: 0; padding: 20px; background: #fff; text-align: center; }
+        .receipt-box { max-width: 300px; margin: auto; padding: 20px; border: 1px dashed #ccc; }
+        h1 { font-size: 18px; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 2px; }
+        .divider { border-bottom: 1px dashed #000; margin: 10px 0; }
+        table { width: 100%; text-align: left; border-collapse: collapse; margin-bottom: 10px; }
+        table td { padding: 2px 0; }
+        table tr td:nth-child(2) { text-align: right; }
+        .total-row { font-weight: bold; font-size: 14px; }
+        @media print {
+            body { padding: 0; }
+            .receipt-box { border: none; max-width: 100%; }
+            .no-print { display: none; }
+        }
+        .btn-print { background: #000; color: #fff; border: none; padding: 8px 16px; font-family: monospace; cursor: pointer; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="no-print">
+        <button class="btn-print" onclick="window.print()">PRINT RECEIPT</button>
+    </div>
+
+    <div class="receipt-box">
+        <h1>KASIBUY ESCROW</h1>
+        <p>VAT: 4XXXXXXXXX<br>www.kasibuy.co.za</p>
+        
+        <div class="divider"></div>
+        
+        <table>
+            <tr><td>Date:</td><td>{{created_at}}</td></tr>
+            <tr><td>Order #:</td><td>{{order_number}}</td></tr>
+            <tr><td>Auth Code:</td><td>{{gateway_reference}}</td></tr>
+            <tr><td>Status:</td><td>PAID - IN ESCROW</td></tr>
+        </table>
+        
+        <div class="divider"></div>
+        
+        <table>
+            <!-- Loop through items dynamically -->
+            <tr>
+                <td>{{item_1_title}} x{{item_1_qty}}</td>
+                <td>R {{item_1_total}}</td>
+            </tr>
+            <tr>
+                <td>{{item_2_title}} x{{item_2_qty}}</td>
+                <td>R {{item_2_total}}</td>
+            </tr>
+            <tr>
+                <td>Shipping</td>
+                <td>R {{shipping_cost}}</td>
+            </tr>
+        </table>
+        
+        <div class="divider"></div>
+        
+        <table>
+            <tr class="total-row">
+                <td>TOTAL PAID</td>
+                <td>R {{total}}</td>
+            </tr>
+        </table>
+        
+        <div class="divider"></div>
+        
+        <p>Funds are held in escrow and will be released to the seller upon delivery confirmation.</p>
+        <p>*** CUSTOMER COPY ***</p>
+    </div>
+</body>
+</html>

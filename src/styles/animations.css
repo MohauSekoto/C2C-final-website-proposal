@@ -1,0 +1,65 @@
+/* Minimal, restrained micro-animations for a corporate feel */
+
+/* Smooth fade in for page loads - Fast and minimal */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Button tactile feedback - minimal */
+.btn {
+  transition: transform 0.1s ease, background-color 0.15s ease, box-shadow 0.15s ease, outline 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.99);
+}
+
+/* Skeleton loader for accessible loading states */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-loader {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  background-color: #e2e8f0;
+  border-radius: var(--bs-border-radius);
+}
+
+.skeleton-loader::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.4) 20%,
+    rgba(255, 255, 255, 0.4) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 1.5s infinite;
+  content: '';
+}
+
+/* Reduced motion respect (Mandatory for Accessibility) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
