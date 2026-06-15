@@ -177,8 +177,8 @@
                                     <?php if (in_array($order['status'], ['pending', 'processing'])): ?>
                                         <form action="/seller/order/mark-sent" method="POST">
                                             <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
-                                            <button type="submit" class="bg-blue-600 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-blue-700 transition-colors shadow-sm">
-                                                Mark as Sent
+                                            <button type="submit" class="bg-orange-500 text-white px-3 py-1.5 rounded text-xs font-medium hover:bg-orange-600 transition-colors shadow-sm flex items-center gap-1">
+                                                <i class="ph ph-truck"></i> Ship via UrgentGo
                                             </button>
                                         </form>
                                     <?php else: ?>

@@ -68,13 +68,9 @@ class SellerController {
         
         $image_url = null;
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-            $uploadDir = __DIR__ . '/../../public/uploads/';
-            if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
-            $fileName = time() . '_' . basename($_FILES['image']['name']);
-            $targetFilePath = $uploadDir . $fileName;
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath)) {
-                $image_url = '/uploads/' . $fileName;
-            }
+            $mime_type = mime_content_type($_FILES['image']['tmp_name']);
+            $base64 = base64_encode(file_get_contents($_FILES['image']['tmp_name']));
+            $image_url = "data:$mime_type;base64,$base64";
         }
 
         $data = [
@@ -134,13 +130,9 @@ class SellerController {
 
         $image_url = null;
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-            $uploadDir = __DIR__ . '/../../public/uploads/';
-            if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
-            $fileName = time() . '_' . basename($_FILES['image']['name']);
-            $targetFilePath = $uploadDir . $fileName;
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath)) {
-                $image_url = '/uploads/' . $fileName;
-            }
+            $mime_type = mime_content_type($_FILES['image']['tmp_name']);
+            $base64 = base64_encode(file_get_contents($_FILES['image']['tmp_name']));
+            $image_url = "data:$mime_type;base64,$base64";
         }
 
         \App\Models\Product::update($id, $seller_id, [

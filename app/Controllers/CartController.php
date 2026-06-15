@@ -85,9 +85,10 @@ class CartController {
             $subtotal += $item['price'] * $item['quantity'];
         }
 
-        $shipping_fee = 150.00;
+        $shipping_cost = (float)($_POST['shipping_cost'] ?? 150.00);
+        $shipping_method = $_POST['shipping_method'] ?? 'economy';
         $commission_fee = $subtotal * 0.05; // 5% platform fee
-        $total_amount = $subtotal + $shipping_fee + $commission_fee;
+        $total_amount = $subtotal + $shipping_cost + $commission_fee;
 
         try {
             $db = new \App\Core\Database();
@@ -110,8 +111,29 @@ class CartController {
             }
 
             $_SESSION['cart'] = [];
-            header("Location: /checkout/success?order_id=" . $order_id);
+            
+            // Generate PayFast Sandbox Auto-Submit Form
+            $merchant_id = '10000100'; // PayFast Sandbox Merchant ID
+            $merchant_key = '46f0cd694581a'; // PayFast Sandbox Merchant Key
+            $return_url = "https://" . $_SERVER['HTTP_HOST'] . "/checkout/success?order_id=" . $order_id;
+            $cancel_url = "https://" . $_SERVER['HTTP_HOST'] . "/cart";
+            
+            echo '<!DOCTYPE html><html><head><title>Redirecting to PayFast...</title></head><body style="display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif; background:#f8fafc;">';
+            echo '<div style="text-align:center;">';
+            echo '<h2>Securely redirecting to PayFast...</h2>';
+            echo '<form action="https://sandbox.payfast.co.za/eng/process" method="POST" id="payfast-form">';
+            echo '<input type="hidden" name="merchant_id" value="' . $merchant_id . '">';
+            echo '<input type="hidden" name="merchant_key" value="' . $merchant_key . '">';
+            echo '<input type="hidden" name="return_url" value="' . $return_url . '">';
+            echo '<input type="hidden" name="cancel_url" value="' . $cancel_url . '">';
+            echo '<input type="hidden" name="amount" value="' . number_format($total_amount, 2, '.', '') . '">';
+            echo '<input type="hidden" name="item_name" value="KasiBuy Order #' . $order_id . '">';
+            echo '<input type="submit" value="Click here if you are not redirected automatically" style="margin-top: 20px; padding: 10px 20px; background: #eab308; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">';
+            echo '</form>';
+            echo '<script>document.getElementById("payfast-form").submit();</script>';
+            echo '</div></body></html>';
             exit;
+            
         } catch (\Exception $e) {
             error_log("Checkout Error: " . $e->getMessage());
             header("Location: /checkout?error=processing_failed");

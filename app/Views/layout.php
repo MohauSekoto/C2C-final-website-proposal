@@ -32,8 +32,15 @@
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
-<body class="bg-light dark:bg-darkBg text-dark dark:text-gray-100 font-sans antialiased flex flex-col min-h-screen transition-colors duration-300">
+<body class="bg-light dark:bg-darkBg text-dark dark:text-gray-100 font-sans antialiased flex flex-col min-h-screen transition-colors duration-300" x-data="{ loading: false }" @submit.window="loading = true">
 
+    <!-- Global Loading Overlay -->
+    <div x-show="loading" style="display: none;" class="fixed inset-0 z-[100] bg-slate-900/50 dark:bg-black/70 backdrop-blur-sm flex items-center justify-center transition-opacity">
+        <div class="bg-white dark:bg-zinc-900 p-8 rounded-2xl shadow-2xl flex flex-col items-center gap-4 animate-bounce-slight">
+            <i class="ph ph-spinner-gap text-5xl text-blue-600 dark:text-blue-400 animate-spin"></i>
+            <p class="text-slate-900 dark:text-white font-medium tracking-wide">Processing...</p>
+        </div>
+    </div>
     <!-- Navigation Bar -->
     <nav class="bg-white dark:bg-darkCard shadow-sm sticky top-0 z-50 transition-colors duration-300" x-data="{ mobileMenuOpen: false }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
