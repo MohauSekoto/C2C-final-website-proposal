@@ -1,36 +1,23 @@
 {
-  "name": "kasibuy-temp",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint",
-    "test:unit": "jest",
-    "test:e2e": "playwright test"
+  "name": "gemini-version-clone",
+  "version": "1.0.0",
+  "description": "This project has been refactored from Next.js to a lightweight, pure PHP backend (using an MVC pattern) with a vanilla HTML/JS frontend powered by Tailwind CSS and Alpine.js.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MohauSekoto/C2C-final-website-proposal.git"
   },
-  "dependencies": {
-    "autoprefixer": "^10.5.0",
-    "bcryptjs": "^3.0.3",
-    "dotenv": "^17.4.2",
-    "drizzle-orm": "^0.45.2",
-    "framer-motion": "^12.40.0",
-    "lucide-react": "^1.17.0",
-    "mysql2": "^3.22.4",
-    "next": "16.2.7",
-    "next-auth": "^5.0.0-beta.31",
-    "next-themes": "^0.4.6",
-    "postcss": "^8.5.15",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "tailwindcss": "^3.4.19"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MohauSekoto/C2C-final-website-proposal/issues"
   },
+  "homepage": "https://github.com/MohauSekoto/C2C-final-website-proposal#readme",
   "devDependencies": {
     "@playwright/test": "^1.60.0",
-    "drizzle-kit": "^0.31.10",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.7",
-    "jest": "^30.4.2"
+    "@types/node": "^25.9.2"
   }
 }
