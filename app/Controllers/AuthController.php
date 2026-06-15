@@ -101,9 +101,25 @@ class AuthController {
             exit;
         }
         
+        $user_id = $_SESSION['user_id'];
+        $store_name = $_POST['store_name'] ?? 'My Store';
+        $location = $_POST['location'] ?? '';
+        $store_description = $_POST['store_description'] ?? '';
+        
         try {
             $db = new Database();
-            $db->query("UPDATE users SET role = 'seller' WHERE id = ?", [$_SESSION['user_id']]);
+            // Check if seller profile already exists
+            $stmt = $db->query("SELECT id FROM seller_profiles WHERE user_id = ?", [$user_id]);
+            if (!$stmt->fetch()) {
+                $db->query("INSERT INTO seller_profiles (user_id, store_name, store_description, location) VALUES (?, ?, ?, ?)", [
+                    $user_id,
+                    $store_name,
+                    $store_description,
+                    $location
+                ]);
+            }
+            
+            $db->query("UPDATE users SET role = 'seller' WHERE id = ?", [$user_id]);
             $_SESSION['role'] = 'seller';
             header("Location: /dashboard");
         } catch (\Exception $e) {

@@ -46,12 +46,14 @@ class Product {
     public static function find($id) {
         $db = new Database();
         $stmt = $db->query("
-            SELECT products.*, categories.name as category_name, users.name as seller_name,
+            SELECT products.*, categories.name as category_name, 
+                   COALESCE(seller_profiles.store_name, users.name) as seller_name,
                    (SELECT AVG(rating) FROM reviews WHERE product_id = products.id) as avg_rating,
                    (SELECT COUNT(*) FROM reviews WHERE product_id = products.id) as review_count
             FROM products 
             JOIN categories ON products.category_id = categories.id 
             JOIN users ON products.seller_id = users.id 
+            LEFT JOIN seller_profiles ON users.id = seller_profiles.user_id
             WHERE products.id = ?
         ", [$id]);
         return $stmt->fetch();
