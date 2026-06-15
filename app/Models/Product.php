@@ -118,4 +118,9 @@ class Product {
         $db->query($query, $params);
         return true;
     }
+
+    public static function delete($id, $seller_id) {
+        $db = new Database();
+        $db->query("DELETE FROM products WHERE id = ? AND seller_id = ?", [$id, $seller_id]);
+    }
 }

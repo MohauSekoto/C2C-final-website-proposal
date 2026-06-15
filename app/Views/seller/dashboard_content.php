@@ -109,9 +109,16 @@
                                     <?php endif; ?>
                                 </td>
                                 <td class="p-4 text-right">
-                                    <a href="/seller/product/edit/<?= $product['id'] ?>" class="text-zinc-400 hover:text-primary transition-colors p-2 rounded hover:bg-blue-50 dark:hover:bg-blue-900/20 active:scale-95 inline-block">
-                                        <i class="ph ph-pencil-simple text-lg"></i>
-                                    </a>
+                                    <div class="flex items-center justify-end gap-2">
+                                        <a href="/seller/product/edit/<?= $product['id'] ?>" class="text-zinc-400 hover:text-primary transition-colors p-2 rounded hover:bg-blue-50 dark:hover:bg-blue-900/20 active:scale-95 inline-block" title="Edit">
+                                            <i class="ph ph-pencil-simple text-lg"></i>
+                                        </a>
+                                        <form action="/seller/product/delete/<?= $product['id'] ?>" method="POST" class="inline m-0" onsubmit="return confirm('Are you sure you want to permanently delete this product?');">
+                                            <button type="submit" class="text-zinc-400 hover:text-red-500 transition-colors p-2 rounded hover:bg-red-50 dark:hover:bg-red-900/20 active:scale-95 inline-block" title="Delete">
+                                                <i class="ph ph-trash text-lg"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

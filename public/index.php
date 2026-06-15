@@ -66,6 +66,7 @@ $router->get('/seller/product/add', 'SellerController@addProductForm');
 $router->post('/seller/product/add', 'SellerController@saveProduct');
 $router->get('/seller/product/edit/{id}', 'SellerController@editProductForm');
 $router->post('/seller/product/edit/{id}', 'SellerController@updateProduct');
+$router->post('/seller/product/delete/{id}', 'SellerController@deleteProduct');
 $router->post('/seller/order/mark-sent', 'SellerController@markAsSent');
 
 $router->get('/admin/login', 'AdminController@loginForm');
