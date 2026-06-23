@@ -1,4 +1,4 @@
-# KasiBuy - PHP MVC 
+# KasiBuy - https://kasibuy.onrender.com/
 KasiBuy is a Consumer-to-Consumer (C2C) e-commerce marketplace built for local South African entrepreneurs. Its role is to connect entrepreneurs with buyers across the country, and give small businesses a practical entry into the digital economy. Whether you're selling handmade crafts or second-hand electronics, KasiBuy lets you list, sell, and buy products with safety tools.
 ## Architecture
 - **Frontend**: Tailwind CSS (via CDN) for styling and Alpine.js (via CDN) for interactivity.
