@@ -11,4 +11,4 @@ KasiBuy is a Consumer-to-Consumer (C2C) e-commerce marketplace built for local S
 - **Database**: The app connects directly to a remote Aiven MySQL database using PHP PDO.
 
 ## Responsive Design
-The project uses Tailwind's utility classes (`sm:`, `md:`, `lg:`) to ensure all pages scale correctly from mobile phones to desktop displays. You can test this using your browser's developer tools.
+The project uses Tailwind's utility classes (`sm:`, `md:`, `lg:`) to ensure all pages scale correctly from mobile phones to desktop displays.
