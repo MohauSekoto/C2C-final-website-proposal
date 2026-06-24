@@ -88,13 +88,12 @@ class SellerController {
 
         try {
             \App\Models\Product::create($data);
+            $message = "Product added successfully!";
+            require_once __DIR__ . '/../Views/seller/success.php';
         } catch (\Exception $e) {
             error_log("Failed to insert product. PDO Exception: " . $e->getMessage());
             die("Database Error: " . $e->getMessage());
         }
-
-        header("Location: /dashboard");
-        exit;
     }
 
     public function editProductForm($id) {
@@ -135,17 +134,35 @@ class SellerController {
             $image_url = "data:$mime_type;base64,$base64";
         }
 
-        \App\Models\Product::update($id, $seller_id, [
-            'category_id' => $category_id,
-            'title' => $title,
-            'price' => $price,
-            'stock_quantity' => $stock_quantity,
-            'description' => $description,
-            'image_url' => $image_url,
-            'is_on_sale' => $is_on_sale
-        ]);
+        try {
+            \App\Models\Product::update($id, $seller_id, [
+                'category_id' => $category_id,
+                'title' => $title,
+                'price' => $price,
+                'stock_quantity' => $stock_quantity,
+                'description' => $description,
+                'image_url' => $image_url,
+                'is_on_sale' => $is_on_sale
+            ]);
+            $message = "Product updated successfully!";
+            require_once __DIR__ . '/../Views/seller/success.php';
+        } catch (\Exception $e) {
+            error_log("Failed to update product. " . $e->getMessage());
+            die("Database Error: " . $e->getMessage());
+        }
+    }
 
-        header("Location: /dashboard");
-        exit;
+    public function deleteProduct($id) {
+        Auth::isSellerOrAdmin();
+        $seller_id = $_SESSION['user_id'];
+        
+        try {
+            \App\Models\Product::delete($id, $seller_id);
+            $message = "Product deleted successfully!";
+            require_once __DIR__ . '/../Views/seller/success.php';
+        } catch (\Exception $e) {
+            error_log("Failed to delete product. " . $e->getMessage());
+            die("Database Error: " . $e->getMessage());
+        }
     }
 }
